@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Navbar, Welcome, Footer, Services, Transactions } from './components';
+import { Navbar, Welcome, Footer, Services, Transactions, Ramper } from './components';
+import { MoralisProvider } from "react-moralis";
+
+const APP_ID = import.meta.env.REACT_APP_MORALIS_APPLICATION_ID;
+const SERVER_URL = import.meta.env.REACT_APP_MORALIS_SERVER_URL;
 
 const users = [{
   "name":"admin",
@@ -18,7 +22,8 @@ const users = [{
 const App = () => {
   const [loggedStatus, setLoggedStatus] = useState(false)
   const [checkLogged, setCheckLogged] = useState(false)
-  const [showSwap, setShowSwap] = useState(false);
+  const [showSwap, setShowSwap] = useState(false)
+  const [showBuySell, setShowBuySell] = useState(false)
   useEffect(() => {
     var auth = localStorage.getItem("auth");
     if(auth) {
@@ -28,15 +33,19 @@ const App = () => {
     }
   }, [checkLogged])
   return (
+    <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
     <div className="min-h-screen">
       <div className="gradient-bg-welcome">
-        <Navbar loggedStatus={loggedStatus} setCheckLogged={setCheckLogged} checkLogged={checkLogged} showSwap={showSwap} setShowSwap={setShowSwap} />
-        <Welcome users={users} loggedStatus={loggedStatus} setCheckLogged={setCheckLogged} checkLogged={checkLogged} showSwap={showSwap} setShowSwap={setShowSwap} />
+        <Navbar loggedStatus={loggedStatus} setCheckLogged={setCheckLogged} checkLogged={checkLogged} showSwap={showSwap} setShowSwap={setShowSwap} showBuySell={showBuySell} setShowBuySell={setShowBuySell} />
+        {showBuySell ? <Ramper /> :
+          <Welcome users={users} loggedStatus={loggedStatus} setCheckLogged={setCheckLogged} checkLogged={checkLogged} showSwap={showSwap} setShowSwap={setShowSwap} />
+        }
       </div>
       {!loggedStatus && <Services />}
       {loggedStatus && <Transactions />}
       <Footer />
     </div>
+      </MoralisProvider>
   );
 };
 

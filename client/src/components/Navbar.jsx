@@ -18,9 +18,26 @@ const Navbar = (props) => {
 
   return (
     <nav className="w-full flex justify-between items-center p-4">
-      <div className="md:flex-[0.5] flex-initial justify-center items-center">
-        <img src={logo} alt="logo" className="w-60 cursor-pointer" />
-      </div>
+      <ul className="md:flex-[0.5] flex-initial justify-center items-center" style={{display: 'flex'}}>
+
+        <li>
+          <img src={logo} alt="logo" className="w-60 cursor-pointer" />
+        </li>
+        <li>
+          <button onClick={() => props.setShowSwap(!props.showSwap)} className="bg-[#2952e3] py-2 px-7 rounded-full cursor-pointer hover:bg-[#2546bd]">
+          Transactions
+          </button>
+          <span>&nbsp;&nbsp; </span>
+        </li>
+        <li>
+          <button onClick={() => props.setShowBuySell(!props.showBuySell)} className="bg-[#2952e3] py-2 px-7 rounded-full cursor-pointer hover:bg-[#2546bd]">
+          Buy / Sell
+          </button>
+          <span>&nbsp;&nbsp; </span>
+        </li>
+      </ul>
+
+    
       <ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
         {/*<li className="mx-4 cursor-pointer">
           <a
@@ -66,10 +83,10 @@ const Navbar = (props) => {
           <>
         <p>Hi, Admin &nbsp;&nbsp; </p>
         <li>
-          <button onClick={() => props.setShowSwap(!props.showSwap)} className="bg-[#2952e3] py-2 px-7 rounded-full cursor-pointer hover:bg-[#2546bd]">
+          {/* <button onClick={() => props.setShowSwap(!props.showSwap)} className="bg-[#2952e3] py-2 px-7 rounded-full cursor-pointer hover:bg-[#2546bd]">
           Transactions
           </button>
-          <span>&nbsp;&nbsp; </span>
+          <span>&nbsp;&nbsp; </span> */}
           
           <button onClick={handleLogout} className="bg-[#2952e3] py-2 px-7 rounded-full cursor-pointer hover:bg-[#2546bd]">
           Logout

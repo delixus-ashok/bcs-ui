@@ -16,25 +16,49 @@ const Navbar = (props) => {
     props.setCheckLogged(!props.checkLogged)
   }
 
+  const handleHomeClick = () => {
+    props.setShowHome(true)
+    props.setShowSwap(false)
+    props.setShowBuySell(false)
+  }
+
+  const handleTransactionsClick = () => {
+    props.setShowSwap(true)
+    props.setShowHome(false)
+    props.setShowBuySell(false)
+  }
+
+  const handleBuySellClick = () => {
+    props.setShowBuySell(true)
+    props.setShowSwap(false)
+    props.setShowHome(false)
+  }
+
+
   return (
     <nav className="w-full flex justify-between items-center p-4">
       <ul className="md:flex-[0.5] flex-initial justify-center items-center" style={{display: 'flex'}}>
 
         <li>
-          <img src={logo} alt="logo" className="w-60 cursor-pointer" />
+          <a onClick={handleHomeClick}><img src={logo} alt="logo" className="w-60 cursor-pointer" /></a>
         </li>
+
+        {props.loggedStatus &&
+        <>
         <li>
-          <button onClick={() => props.setShowSwap(!props.showSwap)} className="bg-[#2952e3] py-2 px-7 rounded-full cursor-pointer hover:bg-[#2546bd]">
+          <button onClick={handleTransactionsClick} className="bg-[#2952e3] py-2 px-7 rounded-full cursor-pointer hover:bg-[#2546bd]">
           Transactions
           </button>
           <span>&nbsp;&nbsp; </span>
         </li>
         <li>
-          <button onClick={() => props.setShowBuySell(!props.showBuySell)} className="bg-[#2952e3] py-2 px-7 rounded-full cursor-pointer hover:bg-[#2546bd]">
+          <button onClick={handleBuySellClick} p className="bg-[#2952e3] py-2 px-7 rounded-full cursor-pointer hover:bg-[#2546bd]">
           Buy / Sell
           </button>
           <span>&nbsp;&nbsp; </span>
         </li>
+        </>
+        }
       </ul>
 
     

@@ -24,6 +24,7 @@ const App = () => {
   const [checkLogged, setCheckLogged] = useState(false)
   const [showSwap, setShowSwap] = useState(false)
   const [showBuySell, setShowBuySell] = useState(false)
+  const [showHome, setShowHome] = useState(true)
   useEffect(() => {
     var auth = localStorage.getItem("auth");
     if(auth) {
@@ -36,9 +37,9 @@ const App = () => {
     <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
     <div className="min-h-screen">
       <div className="gradient-bg-welcome">
-        <Navbar loggedStatus={loggedStatus} setCheckLogged={setCheckLogged} checkLogged={checkLogged} showSwap={showSwap} setShowSwap={setShowSwap} showBuySell={showBuySell} setShowBuySell={setShowBuySell} />
+        <Navbar loggedStatus={loggedStatus} setCheckLogged={setCheckLogged} checkLogged={checkLogged} showSwap={showSwap} setShowSwap={setShowSwap} showBuySell={showBuySell} setShowBuySell={setShowBuySell} showHome={showHome} setShowHome={setShowHome} />
         {showBuySell ? <Ramper /> :
-          <Welcome users={users} loggedStatus={loggedStatus} setCheckLogged={setCheckLogged} checkLogged={checkLogged} showSwap={showSwap} setShowSwap={setShowSwap} />
+          <Welcome users={users} loggedStatus={loggedStatus} setCheckLogged={setCheckLogged} checkLogged={checkLogged} showSwap={showSwap} setShowSwap={setShowSwap} showHome={showHome} setShowHome={setShowHome} />
         }
       </div>
       {!loggedStatus && <Services />}

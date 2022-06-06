@@ -141,7 +141,7 @@ Explore different cryptocurrencies, see how they work – and trade Cryptocurren
               </div>
             </div>
           </div>
-          {!props.showSwap ? 
+          {props.showHome &&
           <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
             <Input
               placeholder="Address To"
@@ -181,7 +181,8 @@ Explore different cryptocurrencies, see how they work – and trade Cryptocurren
               </button>
             )}
           </div>
-          : 
+          }
+          {props.showSwap &&
           <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
             <Select options={options} />
             <Select options={options} />

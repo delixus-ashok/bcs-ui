@@ -1,10 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect, useMemo } from 'react';
 import Select from 'react-select'
 import { SiEthereum } from 'react-icons/si';
 import { BsInfoCircle } from 'react-icons/bs';
 import { shortenAddress } from '../utils/shortenAddress';
 import { Loader } from '.';
 import { TransactionContext } from '../context/TransactionsContext';
+import { DEX } from '.';
+// import { useMoralis } from "react-moralis";
+// import InchModal from "./components/InchModal";
+// import useInchDex from "hooks/useInchDex";
+// import { useTokenPrice } from "react-moralis";
+// import { tokenValue } from "helpers/formatters";
+// import { getWrappedNative } from "helpers/networks";
+// import { useOneInchQuote } from "react-moralis";
+
 
 const commonStyles =
   'min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white';
@@ -182,21 +191,11 @@ Explore different cryptocurrencies, see how they work – and trade Cryptocurren
             )}
           </div>
           : 
-          <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
-            <Select options={options} />
-            <Select options={options} />
-
-            <div className="h-[1px] w-full bg-gray-400 my-2" />
+          <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism" style={{ width : "28rem" }}>
             {isLoading ? (
               <Loader />
             ) : (
-              <button
-                type="button"
-                onClick={handleSubmit}
-                className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer"
-              >
-                Swap
-              </button>
+              <DEX chain="eth" />
             )}
           </div>}
         </div> :

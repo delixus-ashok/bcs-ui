@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { Navbar, Welcome, Footer, Services, Transactions, Ramper } from './components';
 import { MoralisProvider } from "react-moralis";
 
-const APP_ID = import.meta.env.REACT_APP_MORALIS_APPLICATION_ID;
-const SERVER_URL = import.meta.env.REACT_APP_MORALIS_SERVER_URL;
+const APP_ID = "0iruzMPO1OTw6WDNGbDSS0EOrUSHwWVJtfd1zKg6";
+const SERVER_URL="https://rkuubyy1u1fl.usemoralis.com:2053/server";
 
 const users = [{
   "name":"admin",
@@ -32,6 +32,8 @@ const App = () => {
       setLoggedStatus(false)
     }
   }, [checkLogged])
+  console.log("APP_ID is ",APP_ID);
+  console.log("SERVER_URL is ", SERVER_URL);
   return (
     <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
     <div className="min-h-screen">
@@ -45,7 +47,7 @@ const App = () => {
       {loggedStatus && <Transactions />}
       <Footer />
     </div>
-      </MoralisProvider>
+    </MoralisProvider>
   );
 };
 
